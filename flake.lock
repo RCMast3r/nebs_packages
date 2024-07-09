@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "commsdsl-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719180849,
+        "narHash": "sha256-KwmHsFEz3A7k9U8A77aaHKv60WRY2PsTD48Zt6sSGb8=",
+        "owner": "commschamp",
+        "repo": "commsdsl",
+        "rev": "45ee0d357a0ab0e5002f42105ca91e36d87be70d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "commschamp",
+        "repo": "commsdsl",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -117,6 +133,7 @@
     },
     "root": {
       "inputs": {
+        "commsdsl-src": "commsdsl-src",
         "devshell": "devshell",
         "flake-parts": "flake-parts",
         "flow-ipc-src": "flow-ipc-src",
