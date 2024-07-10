@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "commslib-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719105049,
+        "narHash": "sha256-4glwNEZ5x9S5LcgNw7AwVImUg9eVG+FCVUB9158P22w=",
+        "owner": "commschamp",
+        "repo": "comms",
+        "rev": "5b1cd4ccde1d2e5ff051926d01db4bfac89fd417",
+        "type": "github"
+      },
+      "original": {
+        "owner": "commschamp",
+        "repo": "comms",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -134,6 +150,7 @@
     "root": {
       "inputs": {
         "commsdsl-src": "commsdsl-src",
+        "commslib-src": "commslib-src",
         "devshell": "devshell",
         "flake-parts": "flake-parts",
         "flow-ipc-src": "flow-ipc-src",

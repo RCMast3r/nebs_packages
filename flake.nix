@@ -12,9 +12,12 @@
       url = "github:commschamp/commsdsl";
       flake = false;
     };
+    commslib-src = {
+      url = "github:commschamp/comms";
+      flake = false;
+    };
   };
-
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -29,13 +32,16 @@
           let
             flow-ipc = pkgs.callPackage ./flow-ipc.nix { src = flow-ipc-src; };
             commsdsl = pkgs.callPackage ./commsdsl.nix { src = commsdsl-src; };
+            commslib = pkgs.callPackage ./commslib.nix { src = commslib-src; };
           in
           {
             packages.commsdsl = commsdsl;
+            packages.commslib = commslib;
             packages.default = flow-ipc;
             overlayAttrs = {
               inherit (config.packages) default;
               inherit (config.packages) commsdsl;
+              inherit (config.packages) commslib;
             };
             legacyPackages =
               import nixpkgs {
@@ -45,6 +51,4 @@
 
           };
       };
-
-
 }
