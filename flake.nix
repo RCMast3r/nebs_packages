@@ -13,7 +13,7 @@
       flake = false;
     };
     commslib-src = {
-      url = "github:commschamp/comms";
+      url = "github:RCMast3r/comms";
       flake = false;
     };
   };
@@ -39,9 +39,7 @@
             packages.commslib = commslib;
             packages.default = flow-ipc;
             overlayAttrs = {
-              inherit (config.packages) default;
-              inherit (config.packages) commsdsl;
-              inherit (config.packages) commslib;
+              inherit (config.packages) default commsdsl commslib;
             };
             legacyPackages =
               import nixpkgs {
