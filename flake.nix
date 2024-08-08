@@ -16,8 +16,13 @@
       url = "github:RCMast3r/comms";
       flake = false;
     };
+
+    foxglove-ws-protocol-src = {
+      url = "github:foxglove/ws-protocol";
+      flake = false;
+    };
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -33,13 +38,15 @@
             flow-ipc = pkgs.callPackage ./flow-ipc.nix { src = flow-ipc-src; };
             commsdsl = pkgs.callPackage ./commsdsl.nix { src = commsdsl-src; };
             commslib = pkgs.callPackage ./commslib.nix { src = commslib-src; };
+            foxglove-ws-protocol-cpp = pkgs.callPackage ./foxglove_ws_protocol_cpp.nix { src = foxglove-ws-protocol-src; };
           in
           {
             packages.commsdsl = commsdsl;
             packages.commslib = commslib;
             packages.default = flow-ipc;
+            packages.foxglove-ws-protocol-cpp = foxglove-ws-protocol-cpp;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp;
             };
             legacyPackages =
               import nixpkgs {

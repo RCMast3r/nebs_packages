@@ -103,6 +103,22 @@
         "type": "github"
       }
     },
+    "foxglove-ws-protocol-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722853931,
+        "narHash": "sha256-iT3hUS4Cz1th4YYjr3eDPAJhotLSfsDVbMJV5UDO5fY=",
+        "owner": "foxglove",
+        "repo": "ws-protocol",
+        "rev": "b45ef2c53d45b6ffdfc490a677c6bcb22763fc48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "foxglove",
+        "repo": "ws-protocol",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1704161960,
@@ -154,6 +170,7 @@
         "devshell": "devshell",
         "flake-parts": "flake-parts",
         "flow-ipc-src": "flow-ipc-src",
+        "foxglove-ws-protocol-src": "foxglove-ws-protocol-src",
         "nixpkgs": "nixpkgs_2"
       }
     },
