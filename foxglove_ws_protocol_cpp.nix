@@ -4,5 +4,5 @@ stdenv.mkDerivation {
   version = "0.0.1";
   src = src+"/cpp/foxglove-websocket";
   nativeBuildInputs = [ cmake ];
-  propagatedBuildInputs = [ nlohmann_json websocketpp boost zlib openssl];
+  propagatedBuildInputs = [ nlohmann_json websocketpp boost zlib openssl ];
 }

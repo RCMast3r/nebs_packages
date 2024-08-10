@@ -4,6 +4,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     devshell.url = "github:numtide/devshell";
+    nix-proto.url = "github:notalltim/nix-proto";
+
     flow-ipc-src = {
       url = "github:Flow-IPC/flow?submodules=1";
       flake = false;
@@ -18,9 +20,10 @@
     };
 
     foxglove-ws-protocol-src = {
-      url = "github:foxglove/ws-protocol";
+      url = "github:RCMast3r/ws-protocol";
       flake = false;
     };
+
   };
   outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
