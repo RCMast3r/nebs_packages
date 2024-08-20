@@ -24,8 +24,13 @@
       flake = false;
     };
 
+    libsocketcanpp-src = {
+      url = "github:SimonCahill/libsockcanpp";
+      flake = false;
+    };
+
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -42,14 +47,16 @@
             commsdsl = pkgs.callPackage ./commsdsl.nix { src = commsdsl-src; };
             commslib = pkgs.callPackage ./commslib.nix { src = commslib-src; };
             foxglove-ws-protocol-cpp = pkgs.callPackage ./foxglove_ws_protocol_cpp.nix { src = foxglove-ws-protocol-src; };
+            libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix {src = libsocketcanpp-src;};
           in
           {
             packages.commsdsl = commsdsl;
             packages.commslib = commslib;
             packages.default = flow-ipc;
             packages.foxglove-ws-protocol-cpp = foxglove-ws-protocol-cpp;
+            packages.libsocketcanpp = libsocketcanpp;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp;
             };
             legacyPackages =
               import nixpkgs {

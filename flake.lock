@@ -100,6 +100,22 @@
         "type": "github"
       }
     },
+    "libsocketcanpp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722186873,
+        "narHash": "sha256-/E8ADpod/1sgCO4cfJLkn5meTew9VnUnlh2hTMyU0BU=",
+        "owner": "SimonCahill",
+        "repo": "libsockcanpp",
+        "rev": "bff1c8a2238580d82056dbb41e17a0feda18f00a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SimonCahill",
+        "repo": "libsockcanpp",
+        "type": "github"
+      }
+    },
     "nix-filter": {
       "locked": {
         "lastModified": 1710156097,
@@ -218,6 +234,7 @@
         "flake-parts": "flake-parts",
         "flow-ipc-src": "flow-ipc-src",
         "foxglove-ws-protocol-src": "foxglove-ws-protocol-src",
+        "libsocketcanpp-src": "libsocketcanpp-src",
         "nix-proto": "nix-proto",
         "nixpkgs": "nixpkgs_3"
       }
