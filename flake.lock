@@ -32,6 +32,24 @@
         "type": "github"
       }
     },
+    "dbcppp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721811690,
+        "narHash": "sha256-SJyoVF01CBuhVgBnRjlLYxJNlM9aLjrAx4saserXDfM=",
+        "ref": "refs/heads/master",
+        "rev": "944f96f00e3420be128f73e26bdf1375c37aa42c",
+        "revCount": 506,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/xR3b0rn/dbcppp.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/xR3b0rn/dbcppp.git"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -230,6 +248,7 @@
       "inputs": {
         "commsdsl-src": "commsdsl-src",
         "commslib-src": "commslib-src",
+        "dbcppp-src": "dbcppp-src",
         "devshell": "devshell",
         "flake-parts": "flake-parts",
         "flow-ipc-src": "flow-ipc-src",
