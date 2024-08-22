@@ -35,19 +35,19 @@
     "dbcppp-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1721811690,
-        "narHash": "sha256-SJyoVF01CBuhVgBnRjlLYxJNlM9aLjrAx4saserXDfM=",
+        "lastModified": 1724362527,
+        "narHash": "sha256-MYIXnzK/q/axl3uNDsLzfgfLweP5C52SHIf+TFRrqrQ=",
         "ref": "refs/heads/master",
-        "rev": "944f96f00e3420be128f73e26bdf1375c37aa42c",
-        "revCount": 506,
+        "rev": "9245a0f0b847c71e79dad8765350665226f4744a",
+        "revCount": 508,
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/xR3b0rn/dbcppp.git"
+        "url": "https://github.com/RCMast3r/dbcppp.git"
       },
       "original": {
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/xR3b0rn/dbcppp.git"
+        "url": "https://github.com/RCMast3r/dbcppp.git"
       }
     },
     "devshell": {
@@ -156,11 +156,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1719751843,
-        "narHash": "sha256-cXMJuf7blujGjuix8ikve0BkBtjpeMpdcxDAHkXsoeI=",
+        "lastModified": 1723991236,
+        "narHash": "sha256-gGzv9rJaq/tTYuQOVlXgtSblfr66qWNthBvwTPjSRto=",
         "owner": "notalltim",
         "repo": "nix-proto",
-        "rev": "bfd72e21c0474e9baa9b051d1327b8b8d475b229",
+        "rev": "0b579a596058d5f9ec423379f973ae34b6cb59f6",
         "type": "github"
       },
       "original": {
@@ -230,11 +230,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1722987190,
-        "narHash": "sha256-68hmex5efCiM2aZlAAEcQgmFI4ZwWt8a80vOeB/5w3A=",
+        "lastModified": 1724242322,
+        "narHash": "sha256-HMpK7hNjhEk4z5SFg5UtxEio9OWFocHdaQzCfW1pE7w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "21cc704b5e918c5fbf4f9fff22b4ac2681706d90",
+        "rev": "224042e9a3039291f22f4f2ded12af95a616cca0",
         "type": "github"
       },
       "original": {

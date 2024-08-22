@@ -31,7 +31,7 @@
 
     dbcppp-src = {
       type = "git";
-      url = "https://github.com/xR3b0rn/dbcppp.git";
+      url = "https://github.com/RCMast3r/dbcppp.git";
       submodules = true;
       flake = false;
     };
@@ -65,7 +65,7 @@
             packages.libsocketcanpp = libsocketcanpp;
             packages.dbcppp = dbcppp;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp;
             };
             legacyPackages =
               import nixpkgs {
