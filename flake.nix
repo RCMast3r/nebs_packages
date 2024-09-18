@@ -19,6 +19,11 @@
       flake = false;
     };
 
+    foxglove-mcap-src = {
+      url = "github:RCMast3r/mcap";
+      flake = false;
+    };
+
     foxglove-ws-protocol-src = {
       url = "github:RCMast3r/ws-protocol";
       flake = false;
@@ -30,7 +35,7 @@
     };
 
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -47,23 +52,24 @@
             commsdsl = pkgs.callPackage ./commsdsl.nix { src = commsdsl-src; };
             commslib = pkgs.callPackage ./commslib.nix { src = commslib-src; };
             foxglove-ws-protocol-cpp = pkgs.callPackage ./foxglove_ws_protocol_cpp.nix { src = foxglove-ws-protocol-src; };
-            libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix {src = libsocketcanpp-src;};
+            libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix { src = libsocketcanpp-src; };
+            mcap = pkgs.callPackage ./mcap.nix { src = "${foxglove-mcap-src}/cpp";};
           in
           {
+            packages.mcap = mcap;
             packages.commsdsl = commsdsl;
             packages.commslib = commslib;
             packages.default = flow-ipc;
             packages.foxglove-ws-protocol-cpp = foxglove-ws-protocol-cpp;
             packages.libsocketcanpp = libsocketcanpp;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp mcap;
             };
             legacyPackages =
               import nixpkgs {
                 inherit system;
-                overlays = [ (final: _: {flow-ipc = final.callPackage ./flow-ipc.nix { src = flow-ipc-src; }; }) ];
+                overlays = [ self.overlays.default ];
               };
-
           };
       };
 }
