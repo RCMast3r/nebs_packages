@@ -4,5 +4,5 @@ stdenv.mkDerivation {
   version = "0.0.1";
   inherit src;
   propagatedBuildInputs = [lz4 zstd ];
-  nativeBuildInputs = [ cmake pkg-config ];
+  propagatedNativeBuildInputs = [cmake pkg-config ];
 }
