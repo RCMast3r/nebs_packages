@@ -32,6 +32,24 @@
         "type": "github"
       }
     },
+    "dbcppp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1724362527,
+        "narHash": "sha256-MYIXnzK/q/axl3uNDsLzfgfLweP5C52SHIf+TFRrqrQ=",
+        "ref": "refs/heads/master",
+        "rev": "9245a0f0b847c71e79dad8765350665226f4744a",
+        "revCount": 508,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/RCMast3r/dbcppp.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/RCMast3r/dbcppp.git"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -55,11 +73,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1722555600,
-        "narHash": "sha256-XOQkdLafnb/p9ij77byFQjDf5m5QYl9b2REiVClC+x4=",
+        "lastModified": 1726153070,
+        "narHash": "sha256-HO4zgY0ekfwO5bX0QH/3kJ/h4KvUDFZg8YpkNwIbg1U=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "8471fe90ad337a8074e957b69ca4d0089218391d",
+        "rev": "bcef6817a8b2aa20a5a6dbb19b43e63c5bf8619a",
         "type": "github"
       },
       "original": {
@@ -154,11 +172,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1719751843,
-        "narHash": "sha256-cXMJuf7blujGjuix8ikve0BkBtjpeMpdcxDAHkXsoeI=",
+        "lastModified": 1723991236,
+        "narHash": "sha256-gGzv9rJaq/tTYuQOVlXgtSblfr66qWNthBvwTPjSRto=",
         "owner": "notalltim",
         "repo": "nix-proto",
-        "rev": "bfd72e21c0474e9baa9b051d1327b8b8d475b229",
+        "rev": "0b579a596058d5f9ec423379f973ae34b6cb59f6",
         "type": "github"
       },
       "original": {
@@ -200,14 +218,14 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1722555339,
-        "narHash": "sha256-uFf2QeW7eAHlYXuDktm9c25OxOyCoUOQmh5SZ9amE5Q=",
+        "lastModified": 1725233747,
+        "narHash": "sha256-Ss8QWLXdr2JCBPcYChJhz4xJm+h/xjl4G0c0XlP6a74=",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/a5d394176e64ab29c852d03346c1fc9b0b7d33eb.tar.gz"
+        "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/a5d394176e64ab29c852d03346c1fc9b0b7d33eb.tar.gz"
+        "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
       }
     },
     "nixpkgs_2": {
@@ -246,6 +264,7 @@
       "inputs": {
         "commsdsl-src": "commsdsl-src",
         "commslib-src": "commslib-src",
+        "dbcppp-src": "dbcppp-src",
         "devshell": "devshell",
         "flake-parts": "flake-parts",
         "flow-ipc-src": "flow-ipc-src",

@@ -34,8 +34,15 @@
       flake = false;
     };
 
+    dbcppp-src = {
+      type = "git";
+      url = "https://github.com/RCMast3r/dbcppp.git";
+      submodules = true;
+      flake = false;
+    };
+
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -52,8 +59,9 @@
             commsdsl = pkgs.callPackage ./commsdsl.nix { src = commsdsl-src; };
             commslib = pkgs.callPackage ./commslib.nix { src = commslib-src; };
             foxglove-ws-protocol-cpp = pkgs.callPackage ./foxglove_ws_protocol_cpp.nix { src = foxglove-ws-protocol-src; };
-            libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix { src = libsocketcanpp-src; };
             mcap = pkgs.callPackage ./mcap.nix { src = "${foxglove-mcap-src}/cpp";};
+            libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix {src = libsocketcanpp-src;};
+            dbcppp = pkgs.callPackage ./dbcppp.nix {src = dbcppp-src; };
           in
           {
             packages.mcap = mcap;
@@ -62,8 +70,9 @@
             packages.default = flow-ipc;
             packages.foxglove-ws-protocol-cpp = foxglove-ws-protocol-cpp;
             packages.libsocketcanpp = libsocketcanpp;
+            packages.dbcppp = dbcppp;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp mcap;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap;
             };
             legacyPackages =
               import nixpkgs {
