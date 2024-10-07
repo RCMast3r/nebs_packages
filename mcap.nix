@@ -3,6 +3,8 @@ stdenv.mkDerivation {
   pname = "mcap";
   version = "0.0.1";
   inherit src;
-  propagatedBuildInputs = [lz4 zstd ];
+  cmakeFlags = [ "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" ];
+  propagatedBuildInputs = [ lz4 zstd ];
+  buildInputs = [ lz4 zstd ];
   propagatedNativeBuildInputs = [cmake pkg-config ];
 }
