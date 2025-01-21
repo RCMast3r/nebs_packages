@@ -105,11 +105,11 @@
     "foxglove-mcap-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1726702494,
-        "narHash": "sha256-TDKAT9CHknGM61YFTCEXKDhbm6Y9WVyEoxUAHVZimkg=",
+        "lastModified": 1728342210,
+        "narHash": "sha256-+8+i4UTbXIcVBIug7zyBWQmnjX0lfLgsfnmJId/U3xk=",
         "owner": "RCMast3r",
         "repo": "mcap",
-        "rev": "9a134a8bd28a23cf30ab89e4ef7870eef12e2ab8",
+        "rev": "74648f4fd941219eb62c17174dce4285385b5a3d",
         "type": "github"
       },
       "original": {
