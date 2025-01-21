@@ -105,11 +105,11 @@
     "foxglove-mcap-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1726698516,
-        "narHash": "sha256-0cTioEtjmQve5Nv89BCkXrmSM9Kmd1LMfWtFoZY3k7g=",
+        "lastModified": 1726702494,
+        "narHash": "sha256-TDKAT9CHknGM61YFTCEXKDhbm6Y9WVyEoxUAHVZimkg=",
         "owner": "RCMast3r",
         "repo": "mcap",
-        "rev": "66e34d5260e7499b0ce055dfa9d59a350be4f703",
+        "rev": "9a134a8bd28a23cf30ab89e4ef7870eef12e2ab8",
         "type": "github"
       },
       "original": {
@@ -121,16 +121,33 @@
     "foxglove-ws-protocol-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1723342974,
-        "narHash": "sha256-H3+xOxcKwHyrbT1d5P4KvpoMCfj3mCK9mxeegeFIHmA=",
+        "lastModified": 1726702470,
+        "narHash": "sha256-Ke2QydcCwnTeR0tiR5xe2FYb4yklSbn883CH6E0cSAc=",
         "owner": "RCMast3r",
         "repo": "ws-protocol",
-        "rev": "bdae89350a6d0b463fa648023171d10b6eb5d594",
+        "rev": "8c2b06a315d03f2d3b395bba5d97b03cf63ed908",
         "type": "github"
       },
       "original": {
         "owner": "RCMast3r",
         "repo": "ws-protocol",
+        "type": "github"
+      }
+    },
+    "gtsam-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693794078,
+        "narHash": "sha256-HjpGrHclpm2XsicZty/rX/RM/762wzmj4AAoEfni8es=",
+        "owner": "borglab",
+        "repo": "gtsam",
+        "rev": "4f66a491ffc83cf092d0d818b11dc35135521612",
+        "type": "github"
+      },
+      "original": {
+        "owner": "borglab",
+        "ref": "4.2.0",
+        "repo": "gtsam",
         "type": "github"
       }
     },
@@ -270,6 +287,7 @@
         "flow-ipc-src": "flow-ipc-src",
         "foxglove-mcap-src": "foxglove-mcap-src",
         "foxglove-ws-protocol-src": "foxglove-ws-protocol-src",
+        "gtsam-src": "gtsam-src",
         "libsocketcanpp-src": "libsocketcanpp-src",
         "nix-proto": "nix-proto",
         "nixpkgs": "nixpkgs_3"

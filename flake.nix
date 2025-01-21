@@ -41,8 +41,13 @@
       flake = false;
     };
 
+    gtsam-src = {
+      url = "github:borglab/gtsam/4.2.0";
+      flake = false;
+    };
+
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, gtsam-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -61,7 +66,8 @@
             foxglove-ws-protocol-cpp = pkgs.callPackage ./foxglove_ws_protocol_cpp.nix { src = foxglove-ws-protocol-src; };
             mcap = pkgs.callPackage ./mcap.nix { src = "${foxglove-mcap-src}/cpp";};
             libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix {src = libsocketcanpp-src;};
-            dbcppp = pkgs.callPackage ./dbcppp.nix {src = dbcppp-src; };
+            dbcppp = pkgs.callPackage ./dbcppp.nix { src = dbcppp-src; };
+            gtsam = pkgs.callPackage ./gtsam.nix { src = gtsam-src; };
           in
           {
             packages.mcap = mcap;
@@ -71,8 +77,9 @@
             packages.foxglove-ws-protocol-cpp = foxglove-ws-protocol-cpp;
             packages.libsocketcanpp = libsocketcanpp;
             packages.dbcppp = dbcppp;
+            packages.gtsam = gtsam;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam;
             };
             legacyPackages =
               import nixpkgs {
