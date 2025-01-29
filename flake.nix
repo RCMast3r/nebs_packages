@@ -46,8 +46,12 @@
       flake = false;
     };
 
+    soem-src = {
+      url = "github:OpenEtherCATsociety/SOEM";
+      flake = false;
+    };
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, gtsam-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, gtsam-src, soem-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -68,6 +72,7 @@
             libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix {src = libsocketcanpp-src;};
             dbcppp = pkgs.callPackage ./dbcppp.nix { src = dbcppp-src; };
             gtsam = pkgs.callPackage ./gtsam.nix { src = gtsam-src; };
+            soem = pkgs.callPackage ./soem.nix {src = soem-src; };
           in
           {
             packages.mcap = mcap;
@@ -78,8 +83,9 @@
             packages.libsocketcanpp = libsocketcanpp;
             packages.dbcppp = dbcppp;
             packages.gtsam = gtsam;
+            packages.soem = soem;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem;
             };
             legacyPackages =
               import nixpkgs {
