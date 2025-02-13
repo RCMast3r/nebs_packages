@@ -290,7 +290,24 @@
         "gtsam-src": "gtsam-src",
         "libsocketcanpp-src": "libsocketcanpp-src",
         "nix-proto": "nix-proto",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "soem-src": "soem-src"
+      }
+    },
+    "soem-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737971577,
+        "narHash": "sha256-DK+fymGO4Q7XdXRLdVrGTU89zazMuL8+fNttFYCtS/o=",
+        "owner": "OpenEtherCATsociety",
+        "repo": "SOEM",
+        "rev": "2752dc25882ab24d7cfcad674226b65270fb0c61",
+        "type": "github"
+      },
+      "original": {
+        "owner": "OpenEtherCATsociety",
+        "repo": "SOEM",
+        "type": "github"
       }
     }
   },
