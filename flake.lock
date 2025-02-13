@@ -121,11 +121,11 @@
     "foxglove-ws-protocol-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1726702470,
-        "narHash": "sha256-Ke2QydcCwnTeR0tiR5xe2FYb4yklSbn883CH6E0cSAc=",
+        "lastModified": 1739446424,
+        "narHash": "sha256-WaVgddlE5sDAP2Z7ICy3IB38L7YN3XzGOakEPBvz+PE=",
         "owner": "RCMast3r",
         "repo": "ws-protocol",
-        "rev": "8c2b06a315d03f2d3b395bba5d97b03cf63ed908",
+        "rev": "8ff400492ddfadc026bb24faf211697e8b59468c",
         "type": "github"
       },
       "original": {
