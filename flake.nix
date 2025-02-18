@@ -50,8 +50,22 @@
       url = "github:OpenEtherCATsociety/SOEM";
       flake = false;
     };
+    glim-src = {
+      url = "github:RCMast3r/glim";
+      flake = false;
+    };
+    gtsam-points-src = {
+      url = "github:RCMast3r/gtsam_points";
+      flake = false;
+    };
+    
+    glim-ros2-src = {
+      url = "github:koide3/glim_ros2";
+      flake = false;
+    };
+
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, gtsam-src, soem-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, gtsam-src, soem-src, glim-src, gtsam-points-src, glim-ros2-src, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -73,6 +87,8 @@
             dbcppp = pkgs.callPackage ./dbcppp.nix { src = dbcppp-src; };
             gtsam = pkgs.callPackage ./gtsam.nix { src = gtsam-src; };
             soem = pkgs.callPackage ./soem.nix {src = soem-src; };
+            gtsam-points = pkgs.callPackage ./gtsam-points.nix {src = gtsam-points-src; inherit gtsam; };
+            glim = pkgs.callPackage ./glim.nix {src = glim-src; inherit gtsam; inherit gtsam-points; };
           in
           {
             packages.mcap = mcap;
@@ -84,8 +100,10 @@
             packages.dbcppp = dbcppp;
             packages.gtsam = gtsam;
             packages.soem = soem;
+            packages.glim = glim;
+            packages.gtsam-points = gtsam-points;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem glim gtsam-points;
             };
             legacyPackages =
               import nixpkgs {
