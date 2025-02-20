@@ -85,10 +85,10 @@
             mcap = pkgs.callPackage ./mcap.nix { src = "${foxglove-mcap-src}/cpp";};
             libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix {src = libsocketcanpp-src;};
             dbcppp = pkgs.callPackage ./dbcppp.nix { src = dbcppp-src; };
-            gtsam = pkgs.callPackage ./gtsam.nix { src = gtsam-src; };
+            gtsam_pkg = pkgs.callPackage ./gtsam.nix { src = gtsam-src; };
             soem = pkgs.callPackage ./soem.nix {src = soem-src; };
-            gtsam-points = pkgs.callPackage ./gtsam-points.nix {src = gtsam-points-src; inherit gtsam; };
-            glim = pkgs.callPackage ./glim.nix {src = glim-src; inherit gtsam; inherit gtsam-points; };
+            gtsam-points = pkgs.callPackage ./gtsam-points.nix {src = gtsam-points-src; inherit gtsam_pkg; };
+            glim = pkgs.callPackage ./glim.nix {src = glim-src; inherit gtsam_pkg; inherit gtsam-points; };
           in
           {
             packages.mcap = mcap;
@@ -98,7 +98,7 @@
             packages.foxglove-ws-protocol-cpp = foxglove-ws-protocol-cpp;
             packages.libsocketcanpp = libsocketcanpp;
             packages.dbcppp = dbcppp;
-            packages.gtsam = gtsam;
+            packages.gtsam_pkg = gtsam_pkg;
             packages.soem = soem;
             packages.glim = glim;
             packages.gtsam-points = gtsam-points;

@@ -134,14 +134,30 @@
         "type": "github"
       }
     },
+    "glim-ros2-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739507942,
+        "narHash": "sha256-VI8oaJNS265CVD5xqxVAL0ofbM96rkylIMyqZxSp2FY=",
+        "owner": "koide3",
+        "repo": "glim_ros2",
+        "rev": "3d74aaff264c4482f0ee9e152ebcf25299e14d75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "koide3",
+        "repo": "glim_ros2",
+        "type": "github"
+      }
+    },
     "glim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1739868280,
-        "narHash": "sha256-etRpT4M96HuyMt60vLFQHRCwxH6G7mcwE2MVBgIngXo=",
+        "lastModified": 1740059717,
+        "narHash": "sha256-N/Q1nIwv6y6W0tGjVE9hXmVT1mcm+WRpOH559VGa8Hc=",
         "owner": "RCMast3r",
         "repo": "glim",
-        "rev": "e89659c0c967d7ecd938b9a9dfe0407e5bc17e6e",
+        "rev": "37f0e6cf54d880b08f0643cc66e23ab1da76328b",
         "type": "github"
       },
       "original": {
@@ -319,6 +335,7 @@
         "flow-ipc-src": "flow-ipc-src",
         "foxglove-mcap-src": "foxglove-mcap-src",
         "foxglove-ws-protocol-src": "foxglove-ws-protocol-src",
+        "glim-ros2-src": "glim-ros2-src",
         "glim-src": "glim-src",
         "gtsam-points-src": "gtsam-points-src",
         "gtsam-src": "gtsam-src",
