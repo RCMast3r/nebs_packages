@@ -103,7 +103,7 @@
             packages.glim = glim;
             packages.gtsam-points = gtsam-points;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem glim gtsam-points;
+              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem glim gtsam-points gtsam_pkg;
             };
             legacyPackages =
               import nixpkgs {
