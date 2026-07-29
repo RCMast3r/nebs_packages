@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema name="nebs_base" endian="big" version="1" dslVersion="7">
+    <description>
+        Fields shared by every protocol in this example. It defines no messages
+        of its own, so it is only ever useful as a "dslDeps" entry.
+    </description>
+    <fields>
+        <int name="Timestamp" type="uint64" units="milliseconds">
+            <description>Milliseconds since node boot.</description>
+        </int>
+
+        <enum name="NodeId" type="uint8">
+            <validValue name="Ecu" val="0" />
+            <validValue name="Sensor" val="1" />
+            <validValue name="Logger" val="2" />
+        </enum>
+    </fields>
+</schema>

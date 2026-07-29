@@ -1,34 +1,36 @@
 {
   "nodes": {
-    "commsdsl-src": {
+    "comms-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1719180849,
-        "narHash": "sha256-KwmHsFEz3A7k9U8A77aaHKv60WRY2PsTD48Zt6sSGb8=",
+        "lastModified": 1781821900,
+        "narHash": "sha256-U0KTpj3H+GcjiAPfKTl4h8MDZIZ3zZmQr6TpCdMk3bg=",
         "owner": "commschamp",
-        "repo": "commsdsl",
-        "rev": "45ee0d357a0ab0e5002f42105ca91e36d87be70d",
+        "repo": "comms",
+        "rev": "bbc50c64be3ce39632e5c61bab72cb3fa94d27b7",
         "type": "github"
       },
       "original": {
         "owner": "commschamp",
-        "repo": "commsdsl",
+        "ref": "v5.5.2",
+        "repo": "comms",
         "type": "github"
       }
     },
-    "commslib-src": {
+    "commsdsl-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1722042815,
-        "narHash": "sha256-cUhTmyPwMLnML18aEtSKBO93HAt3gUWBSNIxC3WspBE=",
-        "owner": "RCMast3r",
-        "repo": "comms",
-        "rev": "363df4b25ef05647e0c15a130ba090cc13f181ee",
+        "lastModified": 1782079549,
+        "narHash": "sha256-dAtjEe2SweK3mmyshjO8/ZuSdEOjWBWRUZNXXTzkKlU=",
+        "owner": "commschamp",
+        "repo": "commsdsl",
+        "rev": "2ed99891c9a521ee76cf18278679ae489f41d3cb",
         "type": "github"
       },
       "original": {
-        "owner": "RCMast3r",
-        "repo": "comms",
+        "owner": "commschamp",
+        "ref": "v8.1",
+        "repo": "commsdsl",
         "type": "github"
       }
     },
@@ -217,6 +219,21 @@
     },
     "nix-filter": {
       "locked": {
+        "lastModified": 1757882181,
+        "narHash": "sha256-+cCxYIh2UNalTz364p+QYmWHs0P+6wDhiWR4jDIKQIU=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "59c44d1909c72441144b93cf0f054be7fe764de5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
+    "nix-filter_2": {
+      "locked": {
         "lastModified": 1710156097,
         "narHash": "sha256-1Wvk8UP7PXdf8bCCaEoMnOT1qe5/Duqgj+rL8sRQsSM=",
         "owner": "numtide",
@@ -232,7 +249,7 @@
     },
     "nix-proto": {
       "inputs": {
-        "nix-filter": "nix-filter",
+        "nix-filter": "nix-filter_2",
         "nix-std": "nix-std",
         "nixpkgs": "nixpkgs_2"
       },
@@ -327,8 +344,8 @@
     },
     "root": {
       "inputs": {
+        "comms-src": "comms-src",
         "commsdsl-src": "commsdsl-src",
-        "commslib-src": "commslib-src",
         "dbcppp-src": "dbcppp-src",
         "devshell": "devshell",
         "flake-parts": "flake-parts",
@@ -340,6 +357,7 @@
         "gtsam-points-src": "gtsam-points-src",
         "gtsam-src": "gtsam-src",
         "libsocketcanpp-src": "libsocketcanpp-src",
+        "nix-filter": "nix-filter",
         "nix-proto": "nix-proto",
         "nixpkgs": "nixpkgs_3",
         "soem-src": "soem-src"

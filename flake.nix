@@ -5,17 +5,18 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     devshell.url = "github:numtide/devshell";
     nix-proto.url = "github:notalltim/nix-proto";
+    nix-filter.url = "github:numtide/nix-filter";
 
     flow-ipc-src = {
       url = "github:Flow-IPC/flow?submodules=1";
       flake = false;
     };
     commsdsl-src = {
-      url = "github:commschamp/commsdsl";
+      url = "github:commschamp/commsdsl/v8.1";
       flake = false;
     };
-    commslib-src = {
-      url = "github:RCMast3r/comms";
+    comms-src = {
+      url = "github:commschamp/comms/v5.5.2";
       flake = false;
     };
 
@@ -58,14 +59,26 @@
       url = "github:RCMast3r/gtsam_points";
       flake = false;
     };
-    
+
     glim-ros2-src = {
       url = "github:koide3/glim_ros2";
       flake = false;
     };
 
   };
-  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, commsdsl-src, commslib-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, gtsam-src, soem-src, glim-src, gtsam-points-src, glim-ros2-src, ... }@inputs:
+  outputs = { self, nixpkgs, flow-ipc-src, flake-parts, devshell, nix-filter, commsdsl-src, comms-src, foxglove-ws-protocol-src, libsocketcanpp-src, foxglove-mcap-src, dbcppp-src, gtsam-src, soem-src, glim-src, gtsam-points-src, glim-ros2-src, ... }@inputs:
+    let
+      # nix-proto style machinery for turning CommsDSL schemas into packaged,
+      # pre-generated protocol drivers. See ./nix-commsdsl/README.md.
+      nix-commsdsl = import ./nix-commsdsl {
+        nix_lib = nixpkgs.lib;
+        filter = nix-filter.lib;
+      };
+
+      # Overlays for the worked example shipped with the machinery. They double
+      # as the end to end test of the generators.
+      exampleOverlays = import ./nix-commsdsl/example/overlays.nix nix-commsdsl;
+    in
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         systems = [
@@ -76,11 +89,17 @@
           inputs.flake-parts.flakeModules.easyOverlay
           inputs.devshell.flakeModule
         ];
+        flake = {
+          # Consumers do: `import nixpkgs { overlays = [ nebs.overlays.default ] ++ myGeneratedOverlays; }`
+          inherit nix-commsdsl;
+          inherit (nix-commsdsl) mkCommsDslDerivation generateOverlays';
+          commsdslExampleOverlays = exampleOverlays;
+        };
         perSystem = { config, pkgs, system, ... }:
           let
             flow-ipc = pkgs.callPackage ./flow-ipc.nix { src = flow-ipc-src; };
             commsdsl = pkgs.callPackage ./commsdsl.nix { src = commsdsl-src; };
-            commslib = pkgs.callPackage ./commslib.nix { src = commslib-src; };
+            comms = pkgs.callPackage ./comms.nix { src = comms-src; };
             foxglove-ws-protocol-cpp = pkgs.callPackage ./foxglove_ws_protocol_cpp.nix { src = foxglove-ws-protocol-src; };
             mcap = pkgs.callPackage ./mcap.nix { src = "${foxglove-mcap-src}/cpp";};
             libsocketcanpp = pkgs.callPackage ./libsocketcanpp.nix {src = libsocketcanpp-src;};
@@ -89,11 +108,18 @@
             soem = pkgs.callPackage ./soem.nix {src = soem-src; };
             gtsam-points = pkgs.callPackage ./gtsam-points.nix {src = gtsam-points-src; inherit gtsam_pkg; };
             glim = pkgs.callPackage ./glim.nix {src = glim-src; inherit gtsam_pkg; inherit gtsam-points; };
+
+            # Package set with the example protocol generated into it, used for
+            # `nix flake check`.
+            examplePkgs = import nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.default ] ++ nix-commsdsl.overlayToList exampleOverlays;
+            };
           in
           {
             packages.mcap = mcap;
             packages.commsdsl = commsdsl;
-            packages.commslib = commslib;
+            packages.comms = comms;
             packages.default = flow-ipc;
             packages.foxglove-ws-protocol-cpp = foxglove-ws-protocol-cpp;
             packages.libsocketcanpp = libsocketcanpp;
@@ -103,7 +129,13 @@
             packages.glim = glim;
             packages.gtsam-points = gtsam-points;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl commslib foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem glim gtsam-points gtsam_pkg;
+              inherit (config.packages) default commsdsl comms foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem glim gtsam-points gtsam_pkg;
+            };
+            checks = {
+              nebs_demo_comms_cpp = examplePkgs.nebs_demo_comms_cpp;
+              nebs_demo_c = examplePkgs.nebs_demo_c;
+              nebs_demo_wireshark = examplePkgs.nebs_demo_wireshark;
+              nebs_demo_consumer = examplePkgs.callPackage ./nix-commsdsl/example/consumer.nix { };
             };
             legacyPackages =
               import nixpkgs {

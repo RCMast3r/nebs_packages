@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema name="nebs_demo" endian="big" version="1" dslVersion="7">
+    <description>
+        Small protocol exercising the nix-commsdsl machinery: it pulls fields in
+        from the "nebs_base" schema, which is how a CommsDSL dependency looks.
+    </description>
+
+    <fields>
+        <enum name="MsgId" type="uint8" semanticType="messageId">
+            <validValue name="Heartbeat" val="1" />
+            <validValue name="Reading" val="2" />
+        </enum>
+
+        <string name="Label">
+            <lengthPrefix>
+                <int name="Length" type="uint8" />
+            </lengthPrefix>
+        </string>
+    </fields>
+
+    <message name="Heartbeat" id="MsgId.Heartbeat" displayName="Heartbeat">
+        <ref field="@nebs_base.Timestamp" name="Uptime" />
+        <ref field="@nebs_base.NodeId" name="Node" />
+    </message>
+
+    <message name="Reading" id="MsgId.Reading" displayName="Sensor Reading">
+        <ref field="@nebs_base.Timestamp" name="Timestamp" />
+        <ref field="@nebs_base.NodeId" name="Node" />
+        <int name="Value" type="int32" scaling="1/1000" units="volts" />
+        <ref field="Label" name="Name" />
+    </message>
+
+    <frame name="Frame">
+        <sync name="Sync">
+            <int name="SyncField" type="uint16" defaultValue="0xabcd" validValue="0xabcd" />
+        </sync>
+        <size name="Size">
+            <int name="SizeField" type="uint16" />
+        </size>
+        <id name="Id">
+            <ref field="MsgId" />
+        </id>
+        <payload name="Data" />
+        <checksum name="Checksum" alg="crc-ccitt" from="Size">
+            <int name="ChecksumField" type="uint16" />
+        </checksum>
+    </frame>
+</schema>
