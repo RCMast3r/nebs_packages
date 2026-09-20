@@ -1,7 +1,7 @@
 {
   description = "my packages. im tired of making new repos for nix packages and im too lazy to push em up to nixpkgs";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     devshell.url = "github:numtide/devshell";
     nix-proto.url = "github:notalltim/nix-proto";
@@ -108,6 +108,7 @@
             soem = pkgs.callPackage ./soem.nix {src = soem-src; };
             gtsam-points = pkgs.callPackage ./gtsam-points.nix {src = gtsam-points-src; inherit gtsam_pkg; };
             glim = pkgs.callPackage ./glim.nix {src = glim-src; inherit gtsam_pkg; inherit gtsam-points; };
+            foxglove-sdk-cpp = pkgs.callPackage ./foxglove-sdk-cpp.nix { };
 
             # Package set with the example protocol generated into it, used for
             # `nix flake check`.
@@ -128,14 +129,16 @@
             packages.soem = soem;
             packages.glim = glim;
             packages.gtsam-points = gtsam-points;
+            packages.foxglove-sdk-cpp = foxglove-sdk-cpp;
             overlayAttrs = {
-              inherit (config.packages) default commsdsl comms foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem glim gtsam-points gtsam_pkg;
+              inherit (config.packages) default commsdsl comms foxglove-ws-protocol-cpp libsocketcanpp dbcppp mcap gtsam soem glim gtsam-points gtsam_pkg foxglove-sdk-cpp;
             };
             checks = {
               nebs_demo_comms_cpp = examplePkgs.nebs_demo_comms_cpp;
               nebs_demo_c = examplePkgs.nebs_demo_c;
               nebs_demo_wireshark = examplePkgs.nebs_demo_wireshark;
               nebs_demo_consumer = examplePkgs.callPackage ./nix-commsdsl/example/consumer.nix { };
+              foxglove_sdk_cpp_consumer = pkgs.callPackage ./foxglove-sdk-cpp-consumer { inherit foxglove-sdk-cpp; };
             };
             legacyPackages =
               import nixpkgs {
